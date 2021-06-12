@@ -1,0 +1,2 @@
+rootProject.name = "LyfBottomBar"
+include ':app'
