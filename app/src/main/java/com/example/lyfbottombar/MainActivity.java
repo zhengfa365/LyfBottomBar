@@ -16,14 +16,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lyf_bottomobar=findViewById(R.id.lyf_bottomobar);
-        lyf_bottomobar.addItem(new LyfBottomBarItem(this,R.drawable.ic_launcher_background,"home"));
-        lyf_bottomobar.addItem(new LyfBottomBarItem(this,R.drawable.ic_launcher_background,"msg"));
-        lyf_bottomobar.addItem(new LyfBottomBarItem(this,R.drawable.ic_launcher_background,"knowledge"));
+        lyf_bottomobar.addItem(new LyfBottomBarItem(this,R.drawable.ic_launcher_foreground,"home"));
+        lyf_bottomobar.addItem(new LyfBottomBarItem(this,R.drawable.ic_launcher_foreground,"msg"));
+        lyf_bottomobar.addItem(new LyfBottomBarItem(this,R.drawable.ic_launcher_foreground,"knowledge"));
         lyf_bottomobar.setListener(new LyfBottomBar.BottomBarSelectListener() {
             @Override
             public void selectItem(int prePosition, int showPosition) {
                 Toast.makeText(MainActivity.this,"click:"+showPosition,Toast.LENGTH_LONG).show();
             }
         });
+        lyf_bottomobar.setSelectItem(3);
     }
 }

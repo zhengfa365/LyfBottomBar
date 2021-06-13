@@ -3,6 +3,7 @@ package com.example.lyfbottombar.ui;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -45,9 +46,9 @@ public class LyfBottomBar extends LinearLayout {
 
     private void initView() {
         setOrientation(HORIZONTAL);
-        setBackgroundColor(Color.GRAY);
+//        setBackgroundColor(Color.GRAY);
         //item属性
-        itemParams=new LinearLayout.LayoutParams(0,ViewGroup.LayoutParams.WRAP_CONTENT);
+        itemParams=new LinearLayout.LayoutParams(0,ViewGroup.LayoutParams.MATCH_PARENT);
         itemParams.weight=1;
         if(selectPosition==-1) selectPosition=0;
         bottomBarItems =new ArrayList<LyfBottomBarItem>();
@@ -61,7 +62,9 @@ public class LyfBottomBar extends LinearLayout {
                 @Override
                 public void onClick(View v) {
                     listener.selectItem(selectPosition,item.getPosition());
-                    selectPosition=item.getPosition();
+                    bottomBarItems.get(selectPosition).setSelected(false);
+                    selectPosition=item.getPosition()-1;
+                    item.setSelected(true);
                 }
             });
             addView(item,itemParams);
@@ -69,6 +72,11 @@ public class LyfBottomBar extends LinearLayout {
     }
     public void setListener(BottomBarSelectListener listener){
         this.listener=listener;
+    }
+
+    public void setSelectItem(int selectItem){
+        selectPosition=selectItem-1;
+        bottomBarItems.get(selectPosition).setSelected(true);
     }
 
    public interface BottomBarSelectListener{
